@@ -24,6 +24,8 @@ Copy `manifest.json` and `theme.css` into `<vault>/.obsidian/themes/tbdl/`, then
 
 ## Showcase / screenshot
 
+![tbdl theme preview](screenshot.png)
+
 Open [`showcase.md`](showcase.md) in Obsidian (Reading view) to see every styled element at a glance — headings, drop-cap, lists, blockquote, callout, table, code, tags and Material Icons. It's the intended source for the store screenshot: set the window to ~512×288 (or screenshot and crop to 512×288) and replace `screenshot.png`.
 
 ## Recommended companion: line numbers in code blocks

@@ -109,7 +109,7 @@ body {
 .inline-title,
 .markdown-preview-view .markdown-preview-pusher + h1,
 .view-header-title {
-  font-family: var(--heading-font) !important;
+  font-family: var(--heading-font);
   font-weight: 700;
   letter-spacing: 0.01em;
 }
@@ -212,7 +212,6 @@ body {
 .internal-link {
   color: var(--link-color);
   text-decoration: underline;
-  text-decoration-thickness: 1px;
   text-underline-offset: 2px;
 }
 
@@ -404,9 +403,14 @@ a.tag,
 }
 
 /* ------------------------------------------------------------ CALLOUTS -- */
-.callout {
-  border-left: 4px solid var(--tdl-yellow) !important;
-  background: var(--tdl-yellow-soft) !important;
+/* Scope to the reading/source views to raise specificity above Obsidian's
+   per-callout-type rules ([data-callout="..."], same specificity, but our
+   theme loads after app.css so the tie resolves in our favour) — no
+   override flag needed. */
+.markdown-preview-view .callout,
+.markdown-source-view .callout {
+  border-left: 4px solid var(--tdl-yellow);
+  background: var(--tdl-yellow-soft);
   border-radius: 0 4px 4px 0;
 }
 .callout .callout-title {
