@@ -1,0 +1,486 @@
+/*
+  TBDL — Obsidian theme
+  Editorial news-magazine look: Merriweather (body) + Oswald (headings),
+  signature yellow accent (#FFE200), generous line-height, styled lists,
+  blockquotes, links and code.
+  MIT License.
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Oswald:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+/* ----------------------------------------------------------------- ROOT -- */
+body {
+  --font-text-theme: "Merriweather", Georgia, "Times New Roman", serif;
+  --font-interface-theme: "Oswald", "Segoe UI", Arial, sans-serif;
+  --font-monospace-theme: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --font-text-size: 16px;
+
+  /* Code block line numbers (core setting: Editor → Show line numbers in
+     code blocks). The numbers live in a non-selectable gutter, so copying
+     code never includes them. */
+  --line-number-color: #b9b9b0;
+  --line-number-color-active: var(--tdl-blue);
+  --gutter-background: var(--background-secondary);
+
+  /* Brand */
+  --tdl-yellow: #FFE200;
+  --tdl-yellow-soft: #fffdf3;
+  --tdl-ink: #141414;
+  --tdl-ink-soft: #3c3b3b;
+  --tdl-blue: #1d3566;
+  --tdl-red: #e85959;
+
+  /* Obsidian variables (light) */
+  --background-primary: #ffffff;
+  --background-secondary: #f7f7f4;
+  --background-secondary-alt: #f1f1ec;
+  --background-modifier-border: #e6e6e0;
+  --background-modifier-form-field: #fff;
+  --background-modifier-error: #e85959;
+  --background-modifier-success: #4a8f5c;
+
+  --text-normal: var(--tdl-ink);
+  --text-muted: var(--tdl-ink-soft);
+  --text-faint: #8a8a86;
+  --text-accent: var(--tdl-blue);
+  --text-on-accent: var(--tdl-ink);
+  --text-selection: rgba(255, 226, 0, 0.35);
+
+  --interactive-normal: #f7f7f4;
+  --interactive-hover: #efefe9;
+  --interactive-accent: var(--tdl-yellow);
+  --interactive-accent-hover: #f3d000;
+  --interactive-click: #e0c800;
+
+  --accent-color: var(--tdl-ink);
+  --link-color: var(--tdl-blue);
+  --link-unresolved-color: var(--tdl-red);
+
+  --h1-color: var(--tdl-ink);
+  --h2-color: var(--tdl-ink);
+  --h3-color: var(--tdl-blue);
+  --h4-color: var(--tdl-ink);
+  --h5-color: var(--tdl-ink-soft);
+  --h6-color: var(--tdl-ink-soft);
+
+  --heading-font: "Oswald", Arial, sans-serif;
+  --blockquote-border: var(--tdl-yellow);
+  --tag-background: var(--tdl-yellow);
+  --tag-color: var(--tdl-ink);
+}
+
+/* ------------------------------------------------------------------ DARK -- */
+.theme-dark {
+  --background-primary: #14171a;
+  --background-secondary: #1b1f23;
+  --background-secondary-alt: #20252b;
+  --background-modifier-border: #2c323a;
+  --text-normal: #e9e9e6;
+  --text-muted: #b4b4ad;
+  --text-faint: #7d7d77;
+  --text-accent: #ffd84d;
+  --text-selection: rgba(255, 216, 77, 0.28);
+
+  --interactive-normal: #20252b;
+  --interactive-hover: #2a3038;
+  --interactive-accent: var(--tdl-yellow);
+  --interactive-accent-hover: #ffd600;
+
+  --line-number-color: #5f5f5a;
+  --line-number-color-active: var(--text-accent);
+  --gutter-background: var(--background-secondary);
+
+  --h1-color: #f5f5f0;
+  --h2-color: #f5f5f0;
+  --h3-color: #ffd84d;
+  --h4-color: #e9e9e6;
+  --link-color: #ffd84d;
+  --tdl-yellow-soft: #2a2616;
+}
+
+/* ------------------------------------------------------------- LAYOUT/UI -- */
+body {
+  --file-line-width: 720px;
+  --file-margins: 32px 56px;
+}
+
+/* Note title (inline title + reading title) */
+.inline-title,
+.markdown-preview-view .markdown-preview-pusher + h1,
+.view-header-title {
+  font-family: var(--heading-font) !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* -------------------------------------------------------------- HEADINGS -- */
+.markdown-preview-view h1,
+.markdown-preview-view h2,
+.markdown-preview-view h3,
+.markdown-preview-view h4,
+.markdown-preview-view h5,
+.markdown-preview-view h6,
+.cm-s-obsidian .cm-header {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+}
+
+.markdown-preview-view h1,
+.cm-s-obsidian .cm-header-1 {
+  font-size: 2.1em;
+  margin: 0.6em 0 0.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 3px solid var(--tdl-yellow);
+}
+
+.markdown-preview-view h2,
+.cm-s-obsidian .cm-header-2 {
+  font-size: 1.6em;
+  margin: 1.2em 0 0.5em;
+  padding-left: 0.5em;
+  border-left: 5px solid var(--tdl-yellow);
+}
+
+.markdown-preview-view h3,
+.cm-s-obsidian .cm-header-3 {
+  font-size: 1.3em;
+  margin: 1.1em 0 0.4em;
+  color: var(--tdl-blue);
+}
+
+.theme-dark .markdown-preview-view h3,
+.theme-dark .cm-s-obsidian .cm-header-3 {
+  color: var(--text-accent);
+}
+
+.markdown-preview-view h4,
+.cm-s-obsidian .cm-header-4 { font-size: 1.1em; text-transform: uppercase; }
+.markdown-preview-view h5,
+.cm-s-obsidian .cm-header-5 { font-size: 1em;   text-transform: uppercase; color: var(--tdl-ink-soft); }
+.markdown-preview-view h6,
+.cm-s-obsidian .cm-header-6 { font-size: 0.9em; text-transform: uppercase; color: var(--tdl-ink-soft); }
+
+/* ------------------------------------------------------------------ BODY -- */
+.markdown-preview-view,
+.markdown-source-view .cm-content,
+.markdown-preview-section {
+  font-family: var(--font-text-theme);
+  font-size: var(--font-text-size);
+  line-height: 1.75;
+  color: var(--text-normal);
+}
+
+.markdown-preview-section p {
+  margin: 0 0 1.1em;
+}
+
+/* Drop-cap on the very first paragraph of a note (editorial touch) */
+.markdown-preview-section > p:first-of-type::first-letter {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 3.4em;
+  float: left;
+  line-height: 0.8;
+  padding: 0.05em 0.12em 0 0;
+  color: var(--tdl-ink);
+}
+
+/* -------------------------------------------------------------- EMPHASIS -- */
+.markdown-preview-view strong,
+.cm-s-obsidian .cm-strong {
+  font-weight: 900;
+  color: var(--tdl-ink);
+}
+
+.theme-dark .markdown-preview-view strong,
+.theme-dark .cm-s-obsidian .cm-strong { color: #fff; }
+
+.markdown-preview-view em,
+.cm-s-obsidian .cm-em {
+  font-style: italic;
+  color: var(--tdl-ink-soft);
+}
+
+/* ----------------------------------------------------------------- LINKS -- */
+.markdown-preview-view a,
+.cm-s-obsidian .cm-hmd-internal-link,
+.cm-s-obsidian .cm-link,
+.external-link,
+.internal-link {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.markdown-preview-view a:hover,
+.internal-link:hover,
+.cm-s-obsidian .cm-hmd-internal-link:hover,
+.cm-s-obsidian .cm-link:hover {
+  opacity: 0.65;
+}
+
+a.external-link {
+  background-image: none;
+  padding-right: 0;
+}
+
+/* Unresolved links keep the red */
+.is-unresolved,
+.cm-s-obsidian .cm-hmd-internal-link.is-unresolved {
+  color: var(--link-unresolved-color);
+  opacity: 0.7;
+}
+
+/* ----------------------------------------------------------------- LISTS -- */
+.markdown-preview-view ul,
+.markdown-preview-view ol {
+  margin: 0 0 1.1em;
+  padding-left: 1.6em;
+}
+
+.markdown-preview-view li {
+  margin: 0.35em 0;
+}
+
+.markdown-preview-view ul > li::marker {
+  content: "■";
+  color: var(--tdl-yellow);
+  font-size: 0.8em;
+  line-height: 1.4;
+}
+
+.markdown-preview-view ol > li::marker {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  color: var(--tdl-blue);
+}
+
+.theme-dark .markdown-preview-view ol > li::marker { color: var(--text-accent); }
+
+/* Checkbox lists */
+.markdown-preview-view .task-list-item-checkbox {
+  border: 2px solid var(--tdl-ink-soft);
+  border-radius: 2px;
+  margin-right: 0.5em;
+}
+.markdown-preview-view .task-list-item.is-checked .task-list-item-checkbox {
+  background: var(--tdl-yellow);
+  border-color: var(--tdl-yellow);
+}
+
+/* ------------------------------------------------------------ BLOCKQUOTE -- */
+.markdown-preview-view blockquote {
+  margin: 1.2em 0;
+  padding: 0.9em 1.1em;
+  border-left: 4px solid var(--blockquote-border);
+  background: var(--tdl-yellow-soft);
+  color: var(--tdl-ink-soft);
+  font-style: italic;
+  border-radius: 0 4px 4px 0;
+}
+
+.markdown-preview-view blockquote p { margin: 0 0 0.4em; }
+.markdown-preview-view blockquote p:last-child { margin-bottom: 0; }
+
+/* ----------------------------------------------------------- CODE / PRE -- */
+.markdown-preview-view code,
+.cm-s-obsidian .cm-formatting-code,
+.cm-s-obsidian .cm-inline-code {
+  font-family: var(--font-monospace-theme);
+  font-size: 0.88em;
+  background: var(--background-secondary);
+  padding: 2px 5px;
+  border-radius: 3px;
+  color: var(--tdl-ink);
+}
+
+.theme-dark .markdown-preview-view code { color: #f0f0ec; }
+
+.markdown-preview-view pre {
+  background: var(--background-secondary);
+  border-left: 4px solid var(--tdl-yellow);
+  border-radius: 0 4px 4px 0;
+  padding: 0.9em 1.1em;
+  overflow: auto;
+  margin: 1.2em 0;
+}
+
+.markdown-preview-view pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.86em;
+  line-height: 1.5;
+}
+
+/* ------------------------------------------------------- LINE NUMBERS -- */
+/* Obsidian core does NOT number lines inside code blocks. To get copy-safe
+   line numbers, install the "Codeblock Customizer" plugin and enable its
+   "Enable line numbers" option — its gutter is user-select:none, so copying
+   code never includes the numbers. Set the plugin's gutter colors to match
+   this theme (text: #b9b9b0, active: #1d3566, background: #f7f7f4 / dark
+   #1b1f23). The variables below still colour the core editor gutter (the
+   note's line numbers when "Show line number" is on in Editor settings). */
+.cm-editor .cm-lineNumbers,
+.markdown-source-view .cm-lineNumbers {
+  background-color: var(--gutter-background);
+  border-right: 1px solid var(--background-modifier-border);
+  color: var(--line-number-color);
+  font-family: var(--font-monospace-theme);
+  font-size: 0.85em;
+  padding-inline-end: 0.5em;
+  user-select: none;
+}
+.cm-editor .cm-lineNumbers .cm-active {
+  color: var(--line-number-color-active);
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------------- HR -- */
+.markdown-preview-view hr,
+.cm-s-obsidian .cm-hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--tdl-yellow) 30%, var(--tdl-yellow) 70%, transparent);
+  margin: 2.2em 0;
+}
+
+/* ---------------------------------------------------------------- TABLES -- */
+.markdown-preview-view table {
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  width: 100%;
+  font-size: 0.95em;
+}
+
+.markdown-preview-view th {
+  font-family: var(--heading-font);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.85em;
+  text-align: left;
+  background: var(--tdl-yellow);
+  color: var(--tdl-ink);
+  padding: 0.55em 0.8em;
+  border-bottom: 2px solid var(--tdl-ink);
+}
+
+.markdown-preview-view td {
+  padding: 0.55em 0.8em;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.markdown-preview-view tbody tr:nth-child(even) { background: var(--background-secondary); }
+
+/* ----------------------------------------------------------------- TAGS -- */
+a.tag,
+.cm-s-obsidian .cm-hashtag {
+  background: var(--tag-background);
+  color: var(--tag-color);
+  font-family: var(--heading-font);
+  font-weight: 600;
+  font-size: 0.82em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+/* ----------------------------------------------------------- FRONTMATTER -- */
+.markdown-preview-view .frontmatter,
+.markdown-source-view .cm-frontmatter {
+  background: var(--background-secondary);
+  border-left: 3px solid var(--tdl-yellow);
+  border-radius: 0 4px 4px 0;
+  padding: 0.6em 1em;
+  font-family: var(--font-monospace-theme);
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
+/* ------------------------------------------------------------ CALLOUTS -- */
+.callout {
+  border-left: 4px solid var(--tdl-yellow) !important;
+  background: var(--tdl-yellow-soft) !important;
+  border-radius: 0 4px 4px 0;
+}
+.callout .callout-title {
+  font-family: var(--heading-font);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* --------------------------------------------------------------- SCROLL -- */
+::-webkit-scrollbar-thumb {
+  background: var(--background-modifier-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--tdl-yellow); }
+
+/* Selection */
+::selection {
+  background: var(--text-selection);
+  color: var(--tdl-ink);
+}
+
+/* ------------------------------------------------------------ EDITOR OPS -- */
+.cm-s-obsidian .cm-formatting,
+.cm-s-obsidian .cm-formatting-header {
+  color: var(--text-faint);
+  font-family: var(--font-interface-theme);
+}
+
+.cm-s-obsidian .cm-header { font-family: var(--heading-font); }
+.cm-s-obsidian .cm-header-1 { font-size: 2.1em; font-weight: 700; }
+.cm-s-obsidian .cm-header-2 { font-size: 1.6em; font-weight: 700; }
+.cm-s-obsidian .cm-header-3 { font-size: 1.3em; font-weight: 700; }
+
+/* Keep the editor line-height aligned with reading view */
+.cm-s-obsidian .cm-line { line-height: 1.75; }
+
+/* Title bar / view header tweaks for the news feel */
+.view-header-title {
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* ----------------------------------------------------- MATERIAL ICONS -- */
+/* Google Material Icons font, usable inline in notes and callouts:
+     <span class="material-icons">home</span>
+   Sizes: add .mi-sm / .mi-lg / .mi-xl. Color: inherits current text color,
+   or use .mi-yellow / .mi-blue / .mi-muted. */
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: "liga";
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+  font-size: 1.25em;
+}
+.material-icons.mi-sm { font-size: 0.9em; }
+.material-icons.mi-lg { font-size: 1.75em; }
+.material-icons.mi-xl { font-size: 2.5em; }
+.material-icons.mi-yellow { color: var(--tdl-yellow); }
+.material-icons.mi-blue   { color: var(--tdl-blue); }
+.material-icons.mi-muted  { color: var(--text-muted); }
+.material-icons.mi-accent { color: var(--text-accent); }
+
+/* Render nicely inside callout titles and headings */
+.callout-title .material-icons,
+.markdown-preview-view h1 .material-icons,
+.markdown-preview-view h2 .material-icons,
+.markdown-preview-view h3 .material-icons { font-size: 1em; }
