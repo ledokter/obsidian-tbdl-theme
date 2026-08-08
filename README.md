@@ -1,16 +1,22 @@
 # tbdl — Obsidian theme
 
-An editorial news-magazine theme for Obsidian. Serif body type (Merriweather), condensed sans headings (Oswald), a signature yellow accent, a drop-cap on the first paragraph, styled lists, blockquotes, code, tables and callouts. Ships with the Google Material Icons font for use in notes, plus a dark variant.
+An editorial news-magazine theme for Obsidian. Serif body type (Merriweather), condensed sans headings (Oswald), a signature yellow accent, a fuchsia interactive accent, a drop-cap on the first paragraph, styled lists, blockquotes, code, tables and callouts. Ships with the Google Material Icons font for use in notes, plus a dedicated dark palette.
+
+## What's new in v2
+
+- **Fuchsia accent** (`#e5006f`, from tribunedelyon.fr): now the interactive color — buttons, toggles, checked tasks, tags, H3 headings and the drop-cap. Yellow stays the editorial/masthead accent (rules, dividers, H1/H2 bars).
+- **Bullet dot** in Live Preview (edit mode) is now explicitly black in light mode (was inheriting the blue `--text-accent`), and fuchsia in dark mode for visibility.
+- **Dark mode contrast pass**: fixed several elements that were unreadable or invisible in dark mode (drop-cap, italic text, blockquote text, text selection) and re-tuned the fuchsia tint used for on-background text so it keeps solid contrast against the dark palette.
 
 ## Features
 
 - **Typography**: Merriweather for the body, Oswald for headings and the UI.
-- **Editorial accents**: yellow (`#FFE200`) rules under H1, left bar on H2, blue H3, drop-cap on the first paragraph.
-- **Lists**: square yellow bullet markers, Oswald blue ordered-list numerals.
+- **Editorial accents**: yellow (`#FFE200`) rules under H1, left bar on H2, fuchsia (`#e5006f`) H3, fuchsia drop-cap on the first paragraph.
+- **Lists**: square yellow bullet markers (reading view), black/fuchsia bullet dot (Live Preview), Oswald blue ordered-list numerals.
 - **Blockquotes**: yellow left bar on a soft cream background.
 - **Code & tables**: styled code blocks, yellow header rows, themed frontmatter and callouts.
-- **Material Icons**: the Google Material Icons font is loaded; use `<span class="material-icons">home</span>` in notes and callouts. Sizes (`.mi-sm`/`.mi-lg`/`.mi-xl`) and colors (`.mi-yellow`/`.mi-blue`/`.mi-muted`/`.mi-accent`) are provided.
-- **Dark mode**: dedicated dark palette.
+- **Material Icons**: the Google Material Icons font is loaded; use `<span class="material-icons">home</span>` in notes and callouts. Sizes (`.mi-sm`/`.mi-lg`/`.mi-xl`) and colors (`.mi-yellow`/`.mi-blue`/`.mi-fuchsia`/`.mi-muted`/`.mi-accent`) are provided.
+- **Dark mode**: dedicated dark palette, tuned for reading comfort and contrast.
 - **Editor gutter** colors via `--line-number-color` / `--gutter-background` (for the note's line-number gutter).
 
 ## Install
@@ -24,9 +30,22 @@ Copy `manifest.json` and `theme.css` into `<vault>/.obsidian/themes/tbdl/`, then
 
 ## Showcase / screenshot
 
-![tbdl theme preview](screenshot.png)
+![tbdl theme preview — dark (left) / light (right)](screenshot.png)
 
-Open [`showcase.md`](showcase.md) in Obsidian (Reading view) to see every styled element at a glance — headings, drop-cap, lists, blockquote, callout, table, code, tags and Material Icons. It's the intended source for the store screenshot: set the window to ~512×288 (or screenshot and crop to 512×288) and replace `screenshot.png`.
+Two showcase notes highlight the theme's distinctive elements at a glance — headings (including the fuchsia H3), the drop-cap, a task list, an inline tag, a pull-quote, a callout, a table, code and Material Icons:
+
+- [`showcase-light.md`](showcase-light.md) → source for `screenshot-light.png`
+- [`showcase-dark.md`](showcase-dark.md) → source for `screenshot-dark.png`
+
+To export the store screenshot, for each file:
+
+1. Open the note in Obsidian, in Reading view.
+2. Toggle Settings → Appearance → Base color scheme to match the note (**Light** for `showcase-light.md`, **Dark** for `showcase-dark.md`).
+3. Resize the Obsidian window (or just the crop) to a **16:9** ratio.
+4. Screenshot and crop/scale to exactly **512×288 px**.
+5. Save as `screenshot-light.png` / `screenshot-dark.png`.
+
+`screenshot.png` — the main preview above and the community catalog submission — is the two combined side by side: the left half of `screenshot-dark.png` and the right half of `screenshot-light.png`, each resized to 256×288 before stitching.
 
 ## Recommended companion: line numbers in code blocks
 
