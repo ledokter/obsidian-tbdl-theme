@@ -397,10 +397,27 @@ a.external-link {
   border-bottom: 2px solid var(--tdl-ink);
 }
 
+/* Force both halves of the header pairing — background AND text — so
+   nothing (Obsidian's own column hover/resize/sort state, an inline
+   style, a higher-specificity core rule) can swap out the yellow badge
+   from under the black text and leave black-on-dark. */
+.markdown-preview-view th,
+.markdown-preview-view th * {
+  background: var(--tdl-yellow) !important;
+  color: var(--tdl-ink) !important;
+}
+
 .markdown-preview-view td {
   padding: 0.55em 0.8em;
   border-bottom: 1px solid var(--background-modifier-border);
   color: var(--text-normal);
+}
+
+/* Same guarantee for body cells: no inline mark (em/muted quotes, links…)
+   may fall back to a low-contrast color against the dark background. */
+.theme-dark .markdown-preview-view td,
+.theme-dark .markdown-preview-view td * {
+  color: var(--text-normal) !important;
 }
 
 .markdown-preview-view tbody tr:nth-child(even) { background: var(--background-secondary); }
