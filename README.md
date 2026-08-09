@@ -1,17 +1,18 @@
 # tbdl — Obsidian theme
 
-An editorial news-magazine theme for Obsidian. Serif body type (Merriweather), condensed sans headings (Oswald), a signature yellow accent, a fuchsia interactive accent, a drop-cap on the first paragraph, styled lists, blockquotes, code, tables and callouts. Ships with the Google Material Icons font for use in notes, plus a dedicated dark palette.
+An editorial news-magazine theme for Obsidian. Serif body type (Merriweather), condensed sans headings (Oswald), a signature yellow accent, a fuchsia interactive accent, a drop-cap on the first paragraph (colored to match the surrounding text), styled lists, blockquotes, code, tables and callouts. Ships with the Google Material Icons font for use in notes, plus a dedicated dark palette.
 
-## What's new in v2
+## What's new
 
-- **Fuchsia accent** (`#e5006f`, from tribunedelyon.fr): now the interactive color — buttons, toggles, checked tasks, tags, H3 headings and the drop-cap. Yellow stays the editorial/masthead accent (rules, dividers, H1/H2 bars).
+- **v2.0.2 — drop-cap actually renders now.** Reading view wraps every block in a `div.el-<tag>` (e.g. `div.el-p`), so the old `.markdown-preview-section > p:first-of-type` selector never matched — the drop-cap never appeared in a real vault, only in mockups. Fixed with a selector that finds the first paragraph wrapper regardless of preceding headings, and recolored it to follow the body text (black in light mode, near-white in dark) instead of a fixed fuchsia tint.
+- **Fuchsia accent** (`#e5006f`): the interactive color — buttons, toggles, checked tasks, tags, H3 headings. Yellow stays the editorial/masthead accent (rules, dividers, H1/H2 bars).
 - **Bullet dot** in Live Preview (edit mode) is now explicitly black in light mode (was inheriting the blue `--text-accent`), and fuchsia in dark mode for visibility.
-- **Dark mode contrast pass**: fixed several elements that were unreadable or invisible in dark mode (drop-cap, italic text, blockquote text, text selection) and re-tuned the fuchsia tint used for on-background text so it keeps solid contrast against the dark palette.
+- **Dark mode contrast pass**: fixed several elements that were unreadable or invisible in dark mode (italic text, blockquote text, text selection) and re-tuned the fuchsia tint used for on-background text so it keeps solid contrast against the dark palette.
 
 ## Features
 
 - **Typography**: Merriweather for the body, Oswald for headings and the UI.
-- **Editorial accents**: yellow (`#FFE200`) rules under H1, left bar on H2, fuchsia (`#e5006f`) H3, fuchsia drop-cap on the first paragraph.
+- **Editorial accents**: yellow (`#FFE200`) rules under H1, left bar on H2, fuchsia (`#e5006f`) H3, a drop-cap on the first paragraph (colored to match the body text).
 - **Lists**: square yellow bullet markers (reading view), black/fuchsia bullet dot (Live Preview), Oswald blue ordered-list numerals.
 - **Blockquotes**: yellow left bar on a soft cream background.
 - **Code & tables**: styled code blocks, yellow header rows, themed frontmatter and callouts.

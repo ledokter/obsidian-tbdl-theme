@@ -3,9 +3,10 @@
   Editorial news-magazine look: Merriweather (body) + Oswald (headings),
   signature yellow accent (#FFE200) for editorial rules/dividers and a
   fuchsia accent (#e5006f) for interactive/highlight elements — buttons,
-  toggles, tags, checked tasks, H3, drop-cap — generous line-height,
-  styled lists, blockquotes, links and code. Dark mode is a first-class
-  palette tuned for reading comfort and contrast, not an afterthought.
+  toggles, tags, checked tasks, H3 — a drop-cap on the first paragraph
+  (colored to match the surrounding text), generous line-height, styled
+  lists, blockquotes, links and code. Dark mode is a first-class palette
+  tuned for reading comfort and contrast, not an afterthought.
   MIT License.
 */
 
@@ -34,12 +35,6 @@ body {
   --tdl-blue: #0e1e3d;
   --tdl-red: #e85959;
   --tdl-fuchsia: #e5006f;
-
-  /* Text-safe fuchsia: used where the color sits directly on the page
-     background (H3, drop-cap) rather than as a filled chip. Re-pointed
-     to a lighter tint in .theme-dark so it keeps ~6.4:1 contrast on the
-     dark background instead of the ~3.9:1 the base hue gives there. */
-  --tdl-fuchsia-text: var(--tdl-fuchsia);
 
   /* Live Preview bullet dot (.list-bullet::after). Obsidian defaults it
      to var(--text-accent); black in light mode per request, and fuchsia
@@ -97,9 +92,6 @@ body {
   --text-accent: #ffd84d;
   --text-selection: rgba(255, 216, 77, 0.28);
 
-  /* Lighter tint so direct-on-background fuchsia text (H3, drop-cap)
-     keeps solid contrast against the dark palette — see --tdl-fuchsia-text. */
-  --tdl-fuchsia-text: #ff5fa8;
   --tdl-bullet-bg: var(--tdl-fuchsia);
 
   --interactive-normal: #20252b;
@@ -206,15 +198,21 @@ body {
   margin: 0 0 1.1em;
 }
 
-/* Drop-cap on the very first paragraph of a note (editorial touch) */
-.markdown-preview-section > p:first-of-type::first-letter {
+/* Drop-cap on the first paragraph of a note (editorial touch). Obsidian
+   wraps every rendered block in a div.el-<tag> (e.g. div.el-p), so the
+   paragraph is never a direct child of .markdown-preview-section — the
+   old `> p:first-of-type` selector never matched. :nth-child(1 of .el-p)
+   finds the first paragraph wrapper regardless of any heading before it.
+   Color follows --text-normal (black in light mode, near-white in dark)
+   instead of a fixed accent, so it always reads against the page. */
+.markdown-preview-section > div.el-p:nth-child(1 of .el-p) > p::first-letter {
   font-family: var(--heading-font);
   font-weight: 700;
   font-size: 3.4em;
   float: left;
   line-height: 0.8;
   padding: 0.05em 0.12em 0 0;
-  color: var(--tdl-fuchsia-text);
+  color: var(--text-normal);
 }
 
 /* -------------------------------------------------------------- EMPHASIS -- */
