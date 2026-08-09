@@ -47,7 +47,7 @@ To export the store screenshot, for each file:
 4. Screenshot and crop/scale to exactly **512×288 px**.
 5. Save as `screenshot-light.png` / `screenshot-dark.png`.
 
-`screenshot.png` — the main preview above and the community catalog submission — is the two combined side by side: the left half of `screenshot-dark.png` and the right half of `screenshot-light.png`, each resized to 256×288 before stitching.
+`screenshot.png` — the main preview above and the community catalog submission — combines the two with a diagonal cut, not a plain vertical split: `screenshot-dark.png` as the base, with `screenshot-light.png` masked to a parallelogram covering the upper-right corner (top edge from x≈330 to x=512, bottom edge from x≈460 to x=512, on the 512×288 canvas) and composited on top.
 
 ## Recommended companion: line numbers in code blocks
 
