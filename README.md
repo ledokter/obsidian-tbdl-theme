@@ -34,20 +34,7 @@ Copy `manifest.json` and `theme.css` into `<vault>/.obsidian/themes/tbdl/`, then
 
 ![tbdl theme preview — dark (left) / light (right)](screenshot.png)
 
-Two showcase notes highlight the theme's distinctive elements at a glance — headings (including the fuchsia H3), the drop-cap, a task list, an inline tag, a pull-quote, a callout, a table, code and Material Icons:
-
-- [`showcase-light.md`](showcase-light.md) → source for `screenshot-light.png`
-- [`showcase-dark.md`](showcase-dark.md) → source for `screenshot-dark.png`
-
-To export the store screenshot, for each file:
-
-1. Open the note in Obsidian, in Reading view.
-2. Toggle Settings → Appearance → Base color scheme to match the note (**Light** for `showcase-light.md`, **Dark** for `showcase-dark.md`).
-3. Resize the Obsidian window (or just the crop) to a **16:9** ratio.
-4. Screenshot and crop/scale to exactly **512×288 px**.
-5. Save as `screenshot-light.png` / `screenshot-dark.png`.
-
-`screenshot.png` — the main preview above and the community catalog submission — combines the two with a diagonal cut, not a plain vertical split: `screenshot-dark.png` as the base, with `screenshot-light.png` masked to a parallelogram covering the upper-right corner (top edge from x≈330 to x=512, bottom edge from x≈460 to x=512, on the 512×288 canvas) and composited on top.
+Real Obsidian captures (not mockups) showing the theme's distinctive elements — headings (including the fuchsia H3), the drop-cap, a task list, an inline tag, a pull-quote, a callout, a table, code and Material Icons, in both dark and light mode.
 
 ## Recommended companion: line numbers in code blocks
 
