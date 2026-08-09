@@ -4,6 +4,7 @@ An editorial news-magazine theme for Obsidian. Serif body type (Merriweather), c
 
 ## What's new
 
+- **v2.0.3 — CSS-lint cleanup.** Dropped `text-underline-offset` from links (Obsidian's review lint flags the `text-decoration-*` longhand family as only partially supported). The `!important` on table header/cell colors stays: it's there specifically to beat an inline style Obsidian's own core table rendering applies (column resize/sort state), which selector specificity alone can't override — removing it would bring back the black-on-dark table header bug fixed in 2.0.1.
 - **v2.0.2 — drop-cap actually renders now.** Reading view wraps every block in a `div.el-<tag>` (e.g. `div.el-p`), so the old `.markdown-preview-section > p:first-of-type` selector never matched — the drop-cap never appeared in a real vault, only in mockups. Fixed with a selector that finds the first paragraph wrapper regardless of preceding headings, and recolored it to follow the body text (black in light mode, near-white in dark) instead of a fixed fuchsia tint.
 - **Fuchsia accent** (`#e5006f`): the interactive color — buttons, toggles, checked tasks, tags, H3 headings. Yellow stays the editorial/masthead accent (rules, dividers, H1/H2 bars).
 - **Bullet dot** in Live Preview (edit mode) is now explicitly black in light mode (was inheriting the blue `--text-accent`), and fuchsia in dark mode for visibility.
