@@ -215,6 +215,21 @@ body {
   color: var(--text-normal);
 }
 
+/* Drop-cap on the first paragraph following every H2 (##) heading, so
+   each section opens with the same editorial lettrine as the note's
+   opening paragraph. Obsidian wraps each rendered block in a
+   div.el-<tag> wrapper, so we use the adjacent-sibling combinator to
+   hit the first div.el-p right after a div.el-h2. */
+.markdown-preview-section div.el-h2 + div.el-p > p::first-letter {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 3.4em;
+  float: left;
+  line-height: 0.8;
+  padding: 0.05em 0.12em 0 0;
+  color: var(--text-normal);
+}
+
 /* -------------------------------------------------------------- EMPHASIS -- */
 .markdown-preview-view strong,
 .cm-s-obsidian .cm-strong {
@@ -479,6 +494,86 @@ a.tag,
   color: var(--tdl-blue);
 }
 .theme-dark .callout .callout-title { color: var(--text-normal); }
+
+/* -------------------------------------------------- ICONS (Lucide / Tabler) -- */
+/* Two companion plugins — “Lucide Icons for TBDL” and “Tabler Icons for
+   TBDL” — can swap Obsidian's built-in callout glyphs for Lucide or Tabler
+   icons. The plugins supply the icon data; the theme owns the rendering.
+
+   Contract: when a plugin is activated it adds a body class (`tbdl-lucide` or
+   `tbdl-tabler`) and injects a stylesheet that sets the per-callout CSS mask
+   variables below to data-URI SVGs (drawn with an opaque stroke so the
+   mask's alpha equals the icon silhouette). The theme then hides Obsidian's
+   default glyph and draws each callout's icon as a mask colored by the
+   callout's accent (--callout-color), in light and dark mode alike.
+
+   Defaults to `none` so the theme is inert until a plugin is active. */
+:root {
+  --tbdl-callout-icon-size: 18px;
+  --tbdl-callout-default: none;
+  --tbdl-callout-note: none;
+  --tbdl-callout-info: none;
+  --tbdl-callout-abstract: none;
+  --tbdl-callout-tip: none;
+  --tbdl-callout-success: none;
+  --tbdl-callout-question: none;
+  --tbdl-callout-warning: none;
+  --tbdl-callout-failure: none;
+  --tbdl-callout-danger: none;
+  --tbdl-callout-bug: none;
+  --tbdl-callout-example: none;
+  --tbdl-callout-quote: none;
+  --tbdl-callout-todo: none;
+  --tbdl-callout-done: none;
+  --tbdl-callout-missing: none;
+  --tbdl-callout-cite: none;
+  --tbdl-callout-caution: none;
+  --tbdl-callout-check: none;
+}
+
+/* When either icon set is active, hide Obsidian's built-in glyph. */
+body.tbdl-lucide .callout .callout-icon svg,
+body.tbdl-tabler .callout .callout-icon svg {
+  display: none !important;
+}
+
+/* Base mask rendering (uses --tbdl-callout-default as the fallback icon for
+   any callout type the per-type rules below do not cover). */
+body.tbdl-lucide .callout .callout-icon::before,
+body.tbdl-tabler .callout .callout-icon::before {
+  content: "";
+  display: inline-block;
+  width: var(--tbdl-callout-icon-size);
+  height: var(--tbdl-callout-icon-size);
+  flex: 0 0 var(--tbdl-callout-icon-size);
+  margin-right: 0.2em;
+  vertical-align: middle;
+  background-color: var(--callout-color, currentColor);
+  -webkit-mask: var(--tbdl-callout-default) no-repeat center / contain;
+  mask: var(--tbdl-callout-default) no-repeat center / contain;
+}
+
+/* Per-type masks override the fallback. Specificity beats the base rule
+   (extra [data-callout] selector), and only the mask image is replaced —
+   repeat / position / size are inherited from the base. */
+body.tbdl-lucide .callout[data-callout="note"]     .callout-icon::before, body.tbdl-tabler .callout[data-callout="note"]     .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-note);     mask-image: var(--tbdl-callout-note); }
+body.tbdl-lucide .callout[data-callout="info"]     .callout-icon::before, body.tbdl-tabler .callout[data-callout="info"]     .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-info);     mask-image: var(--tbdl-callout-info); }
+body.tbdl-lucide .callout[data-callout="abstract"] .callout-icon::before, body.tbdl-tabler .callout[data-callout="abstract"] .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-abstract); mask-image: var(--tbdl-callout-abstract); }
+body.tbdl-lucide .callout[data-callout="tip"]     .callout-icon::before, body.tbdl-tabler .callout[data-callout="tip"]     .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-tip);     mask-image: var(--tbdl-callout-tip); }
+body.tbdl-lucide .callout[data-callout="success"]  .callout-icon::before, body.tbdl-tabler .callout[data-callout="success"]  .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-success);  mask-image: var(--tbdl-callout-success); }
+body.tbdl-lucide .callout[data-callout="question"] .callout-icon::before, body.tbdl-tabler .callout[data-callout="question"] .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-question); mask-image: var(--tbdl-callout-question); }
+body.tbdl-lucide .callout[data-callout="warning"]  .callout-icon::before, body.tbdl-tabler .callout[data-callout="warning"]  .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-warning);  mask-image: var(--tbdl-callout-warning); }
+body.tbdl-lucide .callout[data-callout="failure"]  .callout-icon::before, body.tbdl-tabler .callout[data-callout="failure"]  .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-failure);  mask-image: var(--tbdl-callout-failure); }
+body.tbdl-lucide .callout[data-callout="danger"]   .callout-icon::before, body.tbdl-tabler .callout[data-callout="danger"]   .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-danger);   mask-image: var(--tbdl-callout-danger); }
+body.tbdl-lucide .callout[data-callout="bug"]      .callout-icon::before, body.tbdl-tabler .callout[data-callout="bug"]      .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-bug);      mask-image: var(--tbdl-callout-bug); }
+body.tbdl-lucide .callout[data-callout="example"]  .callout-icon::before, body.tbdl-tabler .callout[data-callout="example"]  .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-example);  mask-image: var(--tbdl-callout-example); }
+body.tbdl-lucide .callout[data-callout="quote"]    .callout-icon::before, body.tbdl-tabler .callout[data-callout="quote"]    .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-quote);    mask-image: var(--tbdl-callout-quote); }
+body.tbdl-lucide .callout[data-callout="todo"]     .callout-icon::before, body.tbdl-tabler .callout[data-callout="todo"]     .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-todo);     mask-image: var(--tbdl-callout-todo); }
+body.tbdl-lucide .callout[data-callout="done"]     .callout-icon::before, body.tbdl-tabler .callout[data-callout="done"]     .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-done);     mask-image: var(--tbdl-callout-done); }
+body.tbdl-lucide .callout[data-callout="missing"]  .callout-icon::before, body.tbdl-tabler .callout[data-callout="missing"]  .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-missing);  mask-image: var(--tbdl-callout-missing); }
+body.tbdl-lucide .callout[data-callout="cite"]    .callout-icon::before, body.tbdl-tabler .callout[data-callout="cite"]    .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-cite);    mask-image: var(--tbdl-callout-cite); }
+body.tbdl-lucide .callout[data-callout="caution"]  .callout-icon::before, body.tbdl-tabler .callout[data-callout="caution"]  .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-caution);  mask-image: var(--tbdl-callout-caution); }
+body.tbdl-lucide .callout[data-callout="check"]    .callout-icon::before, body.tbdl-tabler .callout[data-callout="check"]    .callout-icon::before { -webkit-mask-image: var(--tbdl-callout-check);    mask-image: var(--tbdl-callout-check); }
 
 /* --------------------------------------------------------------- SCROLL -- */
 ::-webkit-scrollbar-thumb {
