@@ -137,6 +137,19 @@ body.tbdl-no-margins {
   --tbdl-side-padding: 0;
 }
 
+body.tbdl-no-margins .markdown-source-view,
+body.tbdl-no-margins .markdown-reading-view,
+body.tbdl-no-margins .markdown-source-view.mod-cm6 .cm-scroller,
+body.tbdl-no-margins .markdown-preview-view,
+body.tbdl-no-margins .markdown-preview-sizer,
+body.tbdl-no-margins .cm-content {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: none !important;
+}
+
 /* Marge latérale dans les vues édition et lecture */
 .markdown-source-view,
 .markdown-reading-view {
