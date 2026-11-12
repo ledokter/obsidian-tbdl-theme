@@ -116,14 +116,14 @@ body {
 /* ------------------------------------------------------------- LAYOUT/UI -- */
 body {
   --file-line-width: 1000px;
-  --file-margins: 32px 0;
+  --file-margins: 32px 20px;
 }
 
-/* Pas de marges latérales dans les vues édition et lecture */
+/* Marge latérale de 20px dans les vues édition et lecture */
 .markdown-source-view,
 .markdown-reading-view {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /* Note title (inline title + reading title) */
