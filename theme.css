@@ -1,3 +1,14 @@
+/* @settings
+name: tbdl
+id: tbdl
+settings:
+  -
+    id: tbdl-no-margins
+    title: Sans marges latérales
+    description: Désactivé = marge de 20px de chaque côté. Activé = texte pleine largeur.
+    type: class-toggle
+*/
+
 /*
   TBDL — Obsidian theme (v2)
   Editorial news-magazine look: Merriweather (body) + Oswald (headings),
@@ -117,13 +128,20 @@ body {
 body {
   --file-line-width: 1000px;
   --file-margins: 32px 20px;
+  --tbdl-side-padding: 20px;
 }
 
-/* Marge latérale de 20px dans les vues édition et lecture */
+/* Réglage « sans marges » (plugin Style Settings) */
+body.tbdl-no-margins {
+  --file-margins: 32px 0;
+  --tbdl-side-padding: 0;
+}
+
+/* Marge latérale dans les vues édition et lecture */
 .markdown-source-view,
 .markdown-reading-view {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: var(--tbdl-side-padding);
+  padding-right: var(--tbdl-side-padding);
 }
 
 /* Note title (inline title + reading title) */
